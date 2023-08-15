@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prakash.BookService;
 import com.prakash.entity.BookDetail;
-import com.prakash.entity.Books;
 
 @RestController
 public class BooksController {
@@ -25,7 +24,11 @@ public class BooksController {
 		Map<String, Object> res = new HashMap<>();
 		Long pageId = 1L;
 		BookDetail book = bookService.getBookByPageId(bookId, pageId);
-		res.put(book.getBooks().getBookName(), book);
+		if(book != null){
+			res.put(book.getBooks().getBookName(), book);
+		} else {
+			res.put("errorMessge", "Book or Page not found");
+		}
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 	
@@ -33,7 +36,11 @@ public class BooksController {
 	public ResponseEntity<Map<String, Object>> getBookWithPageId(@PathVariable("bookId") Long bookId, @PathVariable("pageId") Long pageId){
 		Map<String, Object> res = new HashMap<>();
 		BookDetail book = bookService.getBookByPageId(bookId, pageId);
-		res.put(book.getBooks().getBookName(), book);
+		if(book != null){
+			res.put(book.getBooks().getBookName(), book);
+		} else {
+			res.put("errorMessge", "Book or Page not found");
+		}
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 	

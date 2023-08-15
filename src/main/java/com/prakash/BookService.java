@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.prakash.entity.BookDetail;
-import com.prakash.entity.Books;
 import com.prakash.repository.BookDetailRepository;
 import com.prakash.repository.BooksRepository;
 
@@ -17,11 +16,13 @@ public class BookService {
 	@Autowired
 	BookDetailRepository bookDetailRepository;
 	
-	public Books getBookById(Long id) {
-		return booksRepository.findById(id).orElse(null);
-	}
-	
 	public BookDetail getBookByPageId(Long bookId, Long pageId) {
-		return bookDetailRepository.findByBooksAndPageNo(bookId, pageId);
+		BookDetail bookDetail = null;
+		try {
+			bookDetail = bookDetailRepository.findByBooksAndPageNo(bookId, pageId);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return bookDetail;
 	}
 }
