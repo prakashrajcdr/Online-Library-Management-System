@@ -1,4 +1,4 @@
-package com.prakash;
+package com.prakash.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

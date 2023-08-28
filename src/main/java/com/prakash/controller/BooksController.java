@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prakash.BookService;
 import com.prakash.entity.BookDetail;
+import com.prakash.service.BookService;
 
 @RestController
 public class BooksController {
