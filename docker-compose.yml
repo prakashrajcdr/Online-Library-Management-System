@@ -1,0 +1,23 @@
+version: "3"
+services:
+  olms-app-service:
+    image: olms-app
+    build: .
+    restart: always
+    environment:
+      MYSQL_HOST: mysql-con
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - 8090-8099:8081
+  mysqldb-service:
+    image: mysql
+    ports:
+      - 3307:3306
+    container_name: mysql-con
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - /home/ubuntu/Documents/docker/practices/mysql:/var/lib/mysql
+  
